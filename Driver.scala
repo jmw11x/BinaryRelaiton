@@ -1,0 +1,30 @@
+object Driver {
+  import BinaryRelation._
+  val s1 = List((1,5),(2,8),(3,9))
+  val r1 = (s1 foldLeft emptyBinaryRelation)((r,e)=>add(r,e))
+  val r2 = (((0 to bound) zip (0 to bound)) foldLeft emptyBinaryRelation)((r,e)=>add(r,e))
+  val s3 = List((2,5),(2,8),(3,10))
+  val r3 = (s3 foldLeft emptyBinaryRelation)((r,e)=>add(r,e))
+  val s4 = List((1,1),  (1,2),  (2,3),  (2,4),  (3,4),  (4,2))
+  val r4 = (s4 foldLeft emptyBinaryRelation)((r,e)=>add(r,e))
+  val r5 = add(add(add(add(emptyBinaryRelation,(1,5)),(5,1)),(1,1)),(5,5))
+  def main(args: Array[String]){
+    print("R1: ")
+    printBinaryRelation(r1)
+    println("Reflexive? " + reflexive(r1))
+    println("Reflexive? " +reflexive(r2))
+    println("Symmetric? " +symmetric(r1))
+    println("transitive? " +transitive(r1))
+    println("Inverse below")
+    printBinaryRelation(inverse(r1))
+    println("Union below")
+    printBinaryRelation(union(r1,r3))
+    println("Symmetric Closure below")
+    printBinaryRelation(symmetricClosure(r1))
+    println("Reflexive Closure below")
+    printBinaryRelation(reflexiveClosure(r1))
+    println("Self join and transitive closure")
+    printBinaryRelation(selfJoin(r4))
+    printBinaryRelation(transitiveClosure(r4))
+  }
+}
